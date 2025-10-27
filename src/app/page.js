@@ -1,9 +1,23 @@
-'''export default function HomePage() {
+"use client";
+
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function HomePage() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+      router.push('/dashboard');
+    } else {
+      router.push('/login');
+    }
+  }, [router]);
+
   return (
     <div>
-      <h1>Hello, World!</h1>
-      <p>Welcome to your new Next.js app.</p>
+      <h1>Loading...</h1>
     </div>
   );
 }
-'''
